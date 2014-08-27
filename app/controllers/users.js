@@ -41,3 +41,23 @@ exports.authenticate = function(req, res){
   });
 };
 
+exports.edit = function(req, res){
+  res.render('users/edit');
+};
+
+exports.update = function(req, res){
+  res.locals.user.save(req.body,function(){
+    res.redirect('/profile');
+  });
+};
+
+exports.show = function(req, res){
+  res.render('users/show');
+};
+
+exports.index = function(req, res){
+  User.find({isVisible:'true'}, function(err, users){
+    res.render('users/index', {users:users});
+  });
+};
+

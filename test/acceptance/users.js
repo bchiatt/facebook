@@ -2,7 +2,7 @@
 
 'use strict';
 
-process.env.DB   = 'template-test';
+process.env.DB   = 'facebook-test';
 
 var expect  = require('chai').expect,
     cp      = require('child_process'),
@@ -28,16 +28,63 @@ describe('users', function(){
     });
   });
 
-  describe('get /register', function(){
-    it('should show the register page', function(done){
+  describe('get /profile/edit', function(){
+    it('should show the edit profile page', function(done){
       request(app)
-      .get('/register')
+      .get('/profile/edit')
+      .set('cookie', cookie)
       .end(function(err, res){
         expect(res.status).to.equal(200);
-        expect(res.text).to.include('Register');
+        expect(res.text).to.include('Email');
+        expect(res.text).to.include('Phone');
+        expect(res.text).to.include('Private');
+        expect(res.text).to.include('bob@aol.com');
+        done();
+      });
+    });
+  });
+
+  describe('put /profile', function(){
+    it('should edit the profile', function(done){
+      request(app)
+      .post('/profile')
+      .set('cookie', cookie)
+      .send('_method=put&email=name%40example.com&photo=http%3A%2F%2Fwww.example.com&phone=5556783473&visible=private&tagline=woot&facebook=http%3A%2F%2Ffacebookurl.com&twitter=http%3A%2F%2Ftwitterurl.com')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/profile');
+        done();
+      });
+    });
+  });
+
+  describe('get /profile', function(){
+    it('should show the profile', function(done){
+      request(app)
+      .get('/profile')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Edit Profile');
+        expect(res.text).to.include('Visibility');
+        expect(res.text).to.include('bob@aol.com');
+        done();
+      });
+    });
+  });
+
+  describe('get /users', function(){
+    it('should show the users page', function(done){
+      request(app)
+      .get('/users')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('bob');
+        expect(res.text).to.include('jill');
+        expect(res.text).to.not.include('sue');
         done();
       });
     });
   });
 });
-

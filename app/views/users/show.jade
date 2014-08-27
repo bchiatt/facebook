@@ -1,0 +1,25 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-6
+      h2=user.email
+      h3=user.tagline
+      h3=user.phone
+      h3: a(href=user.twitter, target='_blank')=user.twitter
+      h3: a(href=user.facebook, target='_blank')=user.facebook
+      h3 Visibility: #{user.isVisible}
+    .col-xs-6
+      .row
+        .col-xs-12
+        form(action='/profile/edit')
+          button.btn.btn-primary(type='submit') Edit Profile
+      .row
+        .col-xs-3
+        .col-xs-6
+          a.thumbnail(href='#')
+            img(src=user.photo)
+        .col-xs-3
+
+
+block scripts
+

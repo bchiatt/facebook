@@ -1,7 +1,7 @@
 {
   "name": "facebook",
   "version": "0.0.0",
-  "description": "an introduction to messaging services app we are calling facebook"
+  "description": "an introduction to messaging services app we are calling facebook",
   "main": "app/index.js",
   "directories": {
     "test": "test"

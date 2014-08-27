@@ -1,0 +1,24 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-2
+    .col-xs-8
+      table.table
+        thead
+          tr
+            th Photo
+            th Email
+            th Twitter
+            th Facebook
+        tbody
+          each person in users
+            tr
+              td: a.thumbnail.indexPhoto(href='#'): img(src=person.photo)
+              td=person.email
+              td=person.twitter
+              td=person.facebook
+    .col-xs-2
+
+
+block scripts
+

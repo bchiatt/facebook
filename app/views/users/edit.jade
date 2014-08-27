@@ -1,0 +1,38 @@
+extends ../shared/template
+block content
+  h2 Edit Profile
+  .row
+    .col-xs-6
+      form(role='form', method='post', action='/profile')
+        input(type='hidden', name='_method', value='put')
+        .form-group
+          label(for='email') Email
+          input.form-control#email(type='email', name='email', value=user.email, autofocus=true)
+        .form-group
+          label(for='photo') Photo
+          input.form-control#photo(type='url', name='photo', value=user.photo)
+        .form-group
+          label(for='phone') Phone
+          input.form-control#phone(type='tel', name='phone', value=user.phone)
+        .radio
+          label.radio-inLine
+            input(type='radio', name='visible', value='public', checked)
+            | Public
+        .radio
+          label.radio-inLine
+            input(type='radio', name='visible', value='private')
+            | Private
+        .form-group
+          label(for='tagline') Tagline
+          input.form-control#tagline(type='text', name='tagline', value=user.tagline)
+        .form-group
+          label(for='facebook') Facebook
+          input.form-control#facebook(type='url', name='facebook', value=user.facebook)
+        .form-group
+          label(for='twitter') Twitter
+          input.form-control#twitter(type='url', name='twitter', value=user.twitter)
+        button.btn.btn-primary(type='submit') Submit
+    .col-xs-6
+
+block scripts
+
