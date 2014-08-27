@@ -1,7 +1,7 @@
 {
-  "name": "template",
+  "name": "facebook",
   "version": "0.0.0",
-  "description": "Node.js/Express Template",
+  "description": "an introduction to messaging services app we are calling facebook"
   "main": "app/index.js",
   "directories": {
     "test": "test"
@@ -22,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nss-cohort-2014-06-07/template"
+    "url": "https://github.com/bchiatt/facebook"
   },
-  "author": "Chyld Medford <chyld.medford@gmail.com>",
+  "author": "Brian Hiatt <brian.hiatt41@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nss-cohort-2014-06-07/template/issues"
+    "url": "https://github.com/bchiatt/facebook/issues"
   },
-  "homepage": "https://github.com/nss-cohort-2014-06-07/template",
+  "homepage": "https://github.com/bchiatt/facebook",
   "dependencies": {
     "async": "^0.9.0",
     "bcrypt": "^0.8.0",
