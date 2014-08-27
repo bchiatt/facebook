@@ -1,0 +1,39 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-6
+      h2=client.email
+      h3=client.tagline
+      h3=client.phone
+      h3: a(href=client.twitter, target='_blank')=client.twitter
+      h3: a(href=client.facebook, target='_blank')=client.facebook
+    .col-xs-6
+      .row
+        .col-xs-3
+        .col-xs-6
+          a.thumbnail(href='#')
+            img(src=client.photo)
+        .col-xs-3
+      .row
+        .col-xs-12
+          form(role-'form', method='post', action='/message/#{client._id}')
+            .radio
+              label
+                input(type='radio', name='mtype', value='text', checked=true)
+                span Text
+            .radio
+              label
+                input(type='radio', name='mtype', value='email')
+                span Email
+            .radio
+              label
+                input(type='radio', name='mtype', value='text')
+                span Internal
+            .form-group
+              label(for='message') Message
+              textarea.form-control#message(name='message')
+            button.btn.btn-success(type='submit') Send Message
+
+
+block scripts
+

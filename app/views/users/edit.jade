@@ -16,11 +16,11 @@ block content
           input.form-control#phone(type='tel', name='phone', value=user.phone)
         .radio
           label.radio-inLine
-            input(type='radio', name='visible', value='public', checked)
+            input(type='radio', name='visible', value='public', checked=user.isVisible)
             | Public
         .radio
           label.radio-inLine
-            input(type='radio', name='visible', value='private')
+            input(type='radio', name='visible', value='private', checked=!user.isVisible)
             | Private
         .form-group
           label(for='tagline') Tagline

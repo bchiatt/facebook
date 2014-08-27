@@ -8,13 +8,15 @@ block content
           tr
             th Photo
             th Email
+            th Phone
             th Twitter
             th Facebook
         tbody
           each person in users
             tr
               td: a.thumbnail.indexPhoto(href='#'): img(src=person.photo)
-              td=person.email
+              td: a(href='/users/#{person.email}')=person.email
+              td=person.phone
               td=person.twitter
               td=person.facebook
     .col-xs-2

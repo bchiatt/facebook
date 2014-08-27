@@ -22,6 +22,10 @@ User.find = function(filter, cb){
   User.collection.find(filter).toArray(cb);
 };
 
+User.findOne = function(filter, cb){
+  User.collection.findOne(filter, cb);
+};
+
 User.register = function(o, cb){
   User.collection.findOne({email:o.email}, function(err, user){
     if(user){return cb();}
@@ -56,9 +60,31 @@ User.prototype.save = function(o, cb){
   User.collection.save(this, cb);
 };
 
-
+User.prototype.send = function(receiver, obj, cb){
+  console.log('receiver', receiver, 'obj', obj);
+  switch(obj.mtype){
+    case 'text':
+      sendText(receiver.phone, obj.message, cb);
+      break;
+    case 'email':
+      break;
+    case 'internal':
+      break;
+  }
+};
 
 
 
 module.exports = User;
 
+//private functions
+
+function sendText(to, body, cb){
+  var accountSid = 'ACcd11a049546fcd6cbdd12b51e62d358b',
+      authToken = process.env.TWILIO,
+      client = require('twilio')(accountSid, authToken);
+
+  console.log(to, body);
+
+  client.messages.create({to:to, from: '+16156516120', body:body}, cb);
+}

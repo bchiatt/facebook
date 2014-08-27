@@ -48,5 +48,13 @@ describe('User', function(){
       });
     });
   });
+
+  describe('.findOne', function(){
+    it('should show one visible users', function(done){
+      User.findOne({email:'jill@aol.com', isVisible:true}, function(err, user){
+        done();
+      });
+    });
+  });
 });
 

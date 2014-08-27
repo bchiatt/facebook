@@ -55,9 +55,23 @@ exports.show = function(req, res){
   res.render('users/show');
 };
 
+exports.client = function(req, res){
+  User.findOne({email:req.params.email, isVisible:'true'}, function(err, client){
+    if(!client){res.redirect('/users');}
+    res.render('users/showUser', {client:client});
+  });
+};
+
 exports.index = function(req, res){
   User.find({isVisible:'true'}, function(err, users){
     res.render('users/index', {users:users});
   });
 };
 
+exports.message = function(req, res){
+  User.findById(req.params.userId, function(err, receiver){
+    res.locals.user.send(receiver, req.body, function(){
+      res.redirect('/users/' + receiver.email);
+    });
+  });
+};

@@ -87,4 +87,44 @@ describe('users', function(){
       });
     });
   });
+
+  describe('get /users/sue@aol.com', function(){
+    it('should show a user profile page', function(done){
+      request(app)
+      .get('/users/sue@aol.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users');
+        done();
+      });
+    });
+  });
+
+  describe('get /users/jill@aol.com', function(){
+    it('should not show a user profile page', function(done){
+      request(app)
+      .get('/users/jill@aol.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('jill@aol.com');
+        done();
+      });
+    });
+  });
+
+  describe('post /message/3', function(){
+    it('should send a user a message', function(done){
+      request(app)
+      .post('/message/000000000000000000000003')
+      .set('cookie', cookie)
+      .send('mtype=text&message=hey')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/jill@aol.com');
+        done();
+      });
+    });
+  });
 });
