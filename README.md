@@ -1,7 +1,7 @@
 ## name of project
 ### Code Badges
-build status icon
-coverage status icon
+[![Build Status](https://travis-ci.org/bchiatt/facebook.svg)](https://travis-ci.org/bchiatt/facebook)
+[![Coverage Status](https://coveralls.io/repos/bchiatt/facebook/badge.png)](https://coveralls.io/r/bchiatt/facebook)
 
 ### About
 write a description about your project
