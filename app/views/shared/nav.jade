@@ -12,6 +12,7 @@
       ul.nav.navbar-nav.navbar-right
         if user
           li: a(href='/inbox') Messages
+            span.badge.pull-right=count
           li: a(href='/profile') Profile
           li: a(href='/users') All Users
           li

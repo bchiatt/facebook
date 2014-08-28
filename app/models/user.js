@@ -91,6 +91,10 @@ User.prototype.findOneMessage = function(messageId, cb){
   });
 };
 
+User.prototype.unreadCount = function(cb){
+  Message.collection.find({toId:this._id, isRead:false}).count(cb);
+};
+
 module.exports = User;
 
 //private functions

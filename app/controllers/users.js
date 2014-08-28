@@ -79,7 +79,10 @@ exports.message = function(req, res){
 
 exports.inbox = function(req, res){
   res.locals.user.findMessages(function(err, messages){
-    res.render('users/inbox', {messages:messages, moment:moment});
+    res.locals.user.unreadCount(function(err, count){
+      res.locals.count = count;
+      res.render('users/inbox', {messages:messages, moment:moment});
+    });
   });
 };
 
