@@ -1,7 +1,6 @@
 'use strict';
 
 var User    = require('../models/user'),
-    Message = require('../models/message'),
     moment  = require('moment');
 
 exports.new = function(req, res){
@@ -85,9 +84,8 @@ exports.inbox = function(req, res){
 };
 
 exports.mail = function(req, res){
-  Message.findById(req.params.mailId, function(err, message){
-    message.read(function(){
-      res.render('users/mail', {message:message, moment:moment});
-    });
+  res.locals.user.findOneMessage(req.params.mailId, function(err, message){
+    if(!message){return res.redirect('/inbox');}
+    res.render('users/mail', {message:message, moment:moment});
   });
 };

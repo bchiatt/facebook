@@ -80,6 +80,17 @@ User.prototype.findMessages = function(cb){
   Message.find({toId:this._id}, cb);
 };
 
+User.prototype.findOneMessage = function(messageId, cb){
+  var _id = Mongo.ObjectID(messageId);
+  Message.collection.findOne({_id:_id, toId:this._id}, function(err, obj){
+    if(!obj){return cb();}
+    var message = _.create(Message.prototype, obj);
+    message.read(function(){
+      cb(err, message);
+    });
+  });
+};
+
 module.exports = User;
 
 //private functions

@@ -170,7 +170,7 @@ describe('users', function(){
     });
   });
 
-  describe('get /inbox/3', function(){
+  describe('get /inbox/2', function(){
     it('should show an internal messages', function(done){
       request(app)
       .get('/inbox/a00000000000000000000002')
@@ -178,6 +178,19 @@ describe('users', function(){
       .end(function(err, res){
         expect(res.status).to.equal(200);
         expect(res.text).to.include('Howdy');
+        done();
+      });
+    });
+  });
+
+  describe('get /inbox/3', function(){
+    it('should redirect to inbox', function(done){
+      request(app)
+      .get('/inbox/a00000000000000000000003')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/inbox');
         done();
       });
     });
