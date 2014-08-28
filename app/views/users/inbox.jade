@@ -4,26 +4,28 @@ block content
     .col-xs-12
       h1 Inbox
   .row
-    .col-xs-2
-    .col-xs-8
-      table.table
-        thead
-          tr
-            th Read?
-            th From
-            th Sent
-            th Subject
-            th Message
-        tbody
-          each message in messages
-            tr
-              td
-                span.glyphicon(class=(!message.isRead === true ? 'glyphicon-envelope' : 'glyphicon-ok'))
-              td: a(href='/inbox/#{message._id}')=message.from
-              td=moment(message.sent).format('DD MMM, YYYY')
-              td=message.subject
-              td=message.body
-    .col-xs-2
+    .panel.panel-default
+      .panel-body
+        .col-xs-2
+        .col-xs-8
+          table.table
+            thead
+              tr
+                th Read?
+                th From
+                th Sent
+                th Subject
+                th Message
+            tbody
+              each message in messages
+                tr
+                  td
+                    span.glyphicon(class=(!message.isRead === true ? 'glyphicon-envelope' : 'glyphicon-ok'))
+                  td: a(href='/inbox/#{message._id}')=message.from
+                  td=moment(message.sent).format('DD MMM, YYYY')
+                  td=message.subject
+                  td=message.body
+        .col-xs-2
 
 
 block scripts

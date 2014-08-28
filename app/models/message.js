@@ -25,6 +25,7 @@ Message.findById = function(id, cb){
 };
 
 Message.find = function(filter, cb){
+  //add sort by date & async map to get email address rather than hard-code
   Message.collection.find(filter).toArray(cb);
 };
 
@@ -39,6 +40,10 @@ Message.prototype.save = function(cb){
 Message.prototype.read = function(cb){
   this.isRead = true;
   Message.collection.save(this, cb);
+};
+
+Message.unread = function(receiverId, cb){
+  Message.collection.find({toId:receiverId, isRead:false}).count(cb);
 };
 
 module.exports = Message;

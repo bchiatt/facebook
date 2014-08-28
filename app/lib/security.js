@@ -7,7 +7,10 @@ exports.authenticate = function(req, res, next){
 
   User.findById(req.session.userId, function(err, user){
     res.locals.user = user;
-    next();
+    res.locals.user.unreadCount(function(err, count){
+      res.locals.count = count;
+      next();
+    });
   });
 };
 
