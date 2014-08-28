@@ -5,6 +5,7 @@
 
 var expect    = require('chai').expect,
     User      = require('../../app/models/user'),
+    Message   = require('../../app/models/message'),
     dbConnect = require('../../app/lib/mongodb'),
     cp        = require('child_process'),
     db        = 'facebook-test';
@@ -68,6 +69,7 @@ describe('User', function(){
         });
       });
     });
+
     it('should send an email message to a user', function(done){
       User.findById('000000000000000000000001', function(err, sender){
         User.findById('000000000000000000000003', function(err, receiver){
@@ -75,6 +77,41 @@ describe('User', function(){
             expect(response.id).to.be.ok;
             done();
           });
+        });
+      });
+    });
+
+    it('should send an internal message to a user', function(done){
+      User.findById('000000000000000000000001', function(err, sender){
+        User.findById('000000000000000000000003', function(err, receiver){
+          sender.send(receiver, {mtype:'internal', subject: 'howdy', message:'yo'}, function(err, response){
+            Message.find({toId:'000000000000000000000003'}, function(err, messages){
+              expect(messages).to.have.length(0);
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
+
+  describe('.findMessages', function(){
+    it('should show all user messages', function(done){
+      User.findById('000000000000000000000001', function(err, client){
+        client.findMessages(function(err, messages){
+          expect(messages).to.have.length(2);
+          done();
+        });
+      });
+    });
+  });
+
+  describe('.findMessages', function(){
+    it('should show all user messages', function(done){
+      User.findById('000000000000000000000003', function(err, client){
+        client.findMessages(function(err, messages){
+          expect(messages).to.have.length(2);
+          done();
         });
       });
     });

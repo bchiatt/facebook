@@ -1,0 +1,50 @@
+{
+    "_id" : {"$oid":"a00000000000000000000001"},
+    "sent" : {"$date":1409275755915},
+    "toId" : {"$oid":"000000000000000000000003"},
+    "frId" : {"$oid":"000000000000000000000001"},
+    "from" : "bob@aol.com",
+    "subject" : "Howdy",
+    "body" : "Testing this out.",
+    "isRead" : false
+}
+{
+    "_id" : {"$oid":"a00000000000000000000002"},
+    "sent" : {"$date":1409275755916},
+    "toId" : {"$oid":"000000000000000000000001"},
+    "frId" : {"$oid":"000000000000000000000002"},
+    "from" : "sue@aol.com",
+    "subject" : "Howdy",
+    "body" : "Testing this out.",
+    "isRead" : false
+}
+{
+    "_id" : {"$oid":"a00000000000000000000003"},
+    "sent" : {"$date":1409275755917},
+    "toId" : {"$oid":"000000000000000000000002"},
+    "frId" : {"$oid":"000000000000000000000003"},
+    "from" : "nodetest@outlook.com",
+    "subject" : "Hey",
+    "body" : "Testing this out.",
+    "isRead" : false
+}
+{
+    "_id" : {"$oid":"a00000000000000000000004"},
+    "sent" : {"$date":1409275755918},
+    "toId" : {"$oid":"000000000000000000000003"},
+    "frId" : {"$oid":"000000000000000000000002"},
+    "from" : "sue@aol.com",
+    "subject" : "Hello",
+    "body" : "Testing this out.",
+    "isRead" : false
+}
+{
+    "_id" : {"$oid":"a00000000000000000000005"},
+    "sent" : {"$date":1409275755919},
+    "toId" : {"$oid":"000000000000000000000001"},
+    "frId" : {"$oid":"000000000000000000000003"},
+    "from" : "nodetest@aol.com",
+    "subject" : "Hi",
+    "body" : "Testing this out.",
+    "isRead" : false
+}

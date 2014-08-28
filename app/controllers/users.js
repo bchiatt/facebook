@@ -1,6 +1,8 @@
 'use strict';
 
-var User = require('../models/user');
+var User    = require('../models/user'),
+    Message = require('../models/message'),
+    moment  = require('moment');
 
 exports.new = function(req, res){
   res.render('users/new');
@@ -72,6 +74,20 @@ exports.message = function(req, res){
   User.findById(req.params.userId, function(err, receiver){
     res.locals.user.send(receiver, req.body, function(){
       res.redirect('/users/' + receiver.email);
+    });
+  });
+};
+
+exports.inbox = function(req, res){
+  res.locals.user.findMessages(function(err, messages){
+    res.render('users/inbox', {messages:messages, moment:moment});
+  });
+};
+
+exports.mail = function(req, res){
+  Message.findById(req.params.mailId, function(err, message){
+    message.read(function(){
+      res.render('users/mail', {message:message, moment:moment});
     });
   });
 };

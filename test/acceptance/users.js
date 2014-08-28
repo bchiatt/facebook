@@ -115,7 +115,7 @@ describe('users', function(){
   });
 
   describe('post /message/3', function(){
-    it('should send a user a message', function(done){
+    it('should send a user a text message', function(done){
       request(app)
       .post('/message/000000000000000000000003')
       .set('cookie', cookie)
@@ -129,7 +129,7 @@ describe('users', function(){
   });
 
   describe('post /message/3', function(){
-    it('should send a user a message', function(done){
+    it('should send a user an email message', function(done){
       request(app)
       .post('/message/000000000000000000000003')
       .set('cookie', cookie)
@@ -137,6 +137,47 @@ describe('users', function(){
       .end(function(err, res){
         expect(res.status).to.equal(302);
         expect(res.headers.location).to.equal('/users/nodetest@outlook.com');
+        done();
+      });
+    });
+  });
+
+  describe('post /message/3', function(){
+    it('should send a user an internal message', function(done){
+      request(app)
+      .post('/message/000000000000000000000003')
+      .set('cookie', cookie)
+      .send('mtype=internal&subject=howdy&message=hey')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/nodetest@outlook.com');
+        done();
+      });
+    });
+  });
+
+  describe('get /inbox', function(){
+    it('should show all user internal messages', function(done){
+      request(app)
+      .get('/inbox')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Howdy');
+        expect(res.text).to.include('Hi');
+        done();
+      });
+    });
+  });
+
+  describe('get /inbox/3', function(){
+    it('should show an internal messages', function(done){
+      request(app)
+      .get('/inbox/a00000000000000000000002')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Howdy');
         done();
       });
     });

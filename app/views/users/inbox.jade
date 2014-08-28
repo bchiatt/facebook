@@ -1,0 +1,25 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-2
+    .col-xs-8
+      table.table
+        thead
+          tr
+            th Read?
+            th From
+            th Sent
+            th Subject
+        tbody
+          each message in messages
+            tr
+              td=message.isRead
+              td: a(href='/inbox/#{message._id}')=message.from
+              td=message.sent
+              td=message.subject
+              td=message.body
+    .col-xs-2
+
+
+block scripts
+
