@@ -57,7 +57,7 @@ exports.show = function(req, res){
 
 exports.client = function(req, res){
   User.findOne({email:req.params.email, isVisible:'true'}, function(err, client){
-    if(!client){res.redirect('/users');}
+    if(!client){return res.redirect('/users');}
     res.render('users/showUser', {client:client});
   });
 };
