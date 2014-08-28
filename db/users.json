@@ -19,7 +19,7 @@
 }
 {
   "_id" : {"$oid":"000000000000000000000003"},
-  "email" : "jill@aol.com",
+  "email" : "nodetest@outlook.com",
   "phone" : "8595533280",
   "photo" : "http://media-cache-ec0.pinimg.com/236x/e0/be/c1/e0bec1ff9c8b8193ba143fc0ebd0c807.jpg",
   "password" : "$2a$10$sjPx9TkrEASeXzH6uuDCDO.n1Sj/H2A/bu/9hBFfm5fm3Z4LzrEPa",

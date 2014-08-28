@@ -101,14 +101,14 @@ describe('users', function(){
     });
   });
 
-  describe('get /users/jill@aol.com', function(){
+  describe('get /users/sara@aol.com', function(){
     it('should not show a user profile page', function(done){
       request(app)
-      .get('/users/jill@aol.com')
+      .get('/users/sara@aol.com')
       .set('cookie', cookie)
       .end(function(err, res){
         expect(res.status).to.equal(200);
-        expect(res.text).to.include('jill@aol.com');
+        expect(res.text).to.include('sara@aol.com');
         done();
       });
     });
@@ -122,7 +122,21 @@ describe('users', function(){
       .send('mtype=text&message=hey')
       .end(function(err, res){
         expect(res.status).to.equal(302);
-        expect(res.headers.location).to.equal('/users/jill@aol.com');
+        expect(res.headers.location).to.equal('/users/nodetest@outlook.com');
+        done();
+      });
+    });
+  });
+
+  describe('post /message/3', function(){
+    it('should send a user a message', function(done){
+      request(app)
+      .post('/message/000000000000000000000003')
+      .set('cookie', cookie)
+      .send('mtype=email&subject=howdy&message=hey')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/nodetest@outlook.com');
         done();
       });
     });
